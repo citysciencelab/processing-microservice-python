@@ -1,4 +1,5 @@
-![Processing Microservice_Banner](https://github.com/citysciencelab/processing-microservice-nodejs/assets/61881523/6c955178-b046-4a34-9b22-4f0bdafcd280)
+
+![Processing Microservice_Python](https://github.com/citysciencelab/processing-microservice-python/assets/61881523/42433e4c-c2ad-47cc-89fd-383f4a26c0c0)
 
 # Processing Microservice - Python
 This repository contains the code for a processing microservice in node.js. The microservice connects with an [Urban Model Server](https://github.com/citysciencelab/urban-model-server) via a Websocket connection. In this way, different simulation models can be hosted on different isolated microservices with their own programming language, packages and versions. 
