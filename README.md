@@ -8,7 +8,7 @@ This repository contains the code for a processing microservice in node.js. The 
 
 
 ## Configuration
-All of the necessary configuration is done in the XXX file. There are two mandatory configurations:
+All of the necessary configuration is done in the [config.py](./config.py) file. There are two mandatory configurations:
 1. ```URL``` of the Urban Model Server. ⚠️ Make sure that both the Urban Model Server and the Processing Microservice are part of the same Docker bridge network. The URL is supposed to point to this Network Gateway and the Port of the Urban Model Platform container. 
 2. ```PROCESS_METADATA``` that registers the process with the Urban Model Server in accordance with the [OGC API Processes](https://docs.ogc.org/is/18-062r2/18-062r2.html) standard. 
 
@@ -19,4 +19,4 @@ Although one can use basically any algorithm to handle the input, do calculation
 
 
 ## Other Processing Microservices
-- [node.js Processing Microservice]([https://insightmaker.com/](https://github.com/citysciencelab/processing-microservice-nodejs/)https://github.com/citysciencelab/processing-microservice-nodejs/)
+- [node.js Processing Microservice](https://github.com/citysciencelab/processing-microservice-nodejs/)
