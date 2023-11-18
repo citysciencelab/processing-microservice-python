@@ -1,8 +1,10 @@
 import socketio
 import json
 
+from config import URL, PROCESS_METADATA
+
+
 # SocketIO URL
-URL = 'http://localhost:5555'
 
 # Create a SocketIO client
 sio = socketio.Client()
@@ -11,19 +13,8 @@ sio = socketio.Client()
 @sio.event
 def connect():
     print("SocketIO connection established")
-    # Send the registration event
-    register_event = {
-        'event': 'register',
-        'data': {
-            'version': '0.1.0',
-            'id': 'tree-planting-robots',
-            'title': {'en': 'CCmCC Tree planting robot Model'},
-            'description': {'en': 'This is the Mesa-geo model for the CCmCC project tree planting robots'},
-            'jobControlOptions': ['sync-execute', 'async-execute'],
-            'links': [{'type': 'text/html', 'rel': 'about', 'title': 'information', 'href': 'http://...'}]
-        }
-    }
-    sio.emit('register', json.dumps(register_event))
+
+    sio.emit('register', PROCESS_METADATA)
 
 @sio.event
 def disconnect():
