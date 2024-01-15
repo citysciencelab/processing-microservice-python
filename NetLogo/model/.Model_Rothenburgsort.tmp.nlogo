@@ -699,7 +699,7 @@ Dauer-Planung-und-Genehmigung-der-Modernisierung
 Dauer-Planung-und-Genehmigung-der-Modernisierung
 1
 36
-36.0
+9.0
 1
 1
 Monate
@@ -736,7 +736,7 @@ Verfügbarkeit-Handwerks-und-Bauleistungen
 Verfügbarkeit-Handwerks-und-Bauleistungen
 0
 25
-25.0
+12.0
 1
 1
 Gebäude pro Monat
@@ -751,7 +751,7 @@ Umzugsentscheidung-bei-Modernisierungsankündigung
 Umzugsentscheidung-bei-Modernisierungsankündigung
 0
 25
-8.0
+9.0
 1
 1
 %
@@ -766,7 +766,7 @@ Durchschnittliche-Kosten-für-energetische-Modernisierung
 Durchschnittliche-Kosten-für-energetische-Modernisierung
 5000
 50000
-50000.0
+10000.0
 1000
 1
 €

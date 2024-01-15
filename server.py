@@ -3,6 +3,7 @@ import json
 
 from config import URL, PROCESS_METADATA
 
+from NetLogo.ProcessManager import simulateResults
 
 # Create a SocketIO client
 sio = socketio.Client()
@@ -35,6 +36,8 @@ def execute(data):
 
     print("Job execution started (Job ID", jobID, ")")
 
+    print("Input parameters:", data["jobID"])
+
     # Input parameters
     inputParameters = {}
 
@@ -49,11 +52,6 @@ def execute(data):
             inputParameters[title] = value
         except KeyError:
             continue
-
-    # simulateResults function
-    def simulateResults(inputParameters):
-        # Your implementation of simulateResults function goes here
-        pass
 
     results = simulateResults(inputParameters)
 
