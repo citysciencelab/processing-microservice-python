@@ -1,2 +1,2 @@
 flask 
-"python-socketio[client]"
+python-socketio[client]
