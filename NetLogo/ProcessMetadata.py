@@ -19,13 +19,13 @@ NETLOGO_REPORTERS = [
     'count (anwohnerschaft with [not weggezogen?])'
 ]
 
-PROCESS_METADATA = {
+NETLOGO_PROCESS_METADATA = {
     'version': '0.1.0',
-            'id': 'rothenburgsort_abm',
-            'title': {'en': 'Agent-based model of RE3', 'de': 'Agentenbasiertes Modell von RE3'},
-            'description': {'en': 'This is an agent-based model of the Rothenburgsort district in Hamburg, Germany. It is based on a real-world experiment in the CUT-project.', 
-                            'de': 'Dies ist ein agentenbasiertes Modell des Stadtteils Rothenburgsort in Hamburg, Deutschland. Es basiert auf einem Realexperiment im CUT-Projekt.'},
-            'jobControlOptions': ['sync-execute', 'async-execute'],
+    'id': 'rothenburgsort_abm',
+    'title': {'en': 'Agent-based model of RE3', 'de': 'Agentenbasiertes Modell von RE3'},
+    'description': {'en': 'This is an agent-based model of the Rothenburgsort district in Hamburg, Germany. It is based on a real-world experiment in the CUT-project.', 
+                    'de': 'Dies ist ein agentenbasiertes Modell des Stadtteils Rothenburgsort in Hamburg, Deutschland. Es basiert auf einem Realexperiment im CUT-Projekt.'},
+    'jobControlOptions': ['sync-execute', 'async-execute'],
     'links': [{
         'type': 'text/html',
         'rel': 'about',
@@ -143,5 +143,5 @@ PROCESS_METADATA = {
             'maximum-rent-increase': 8,
         }
     }
-}, 
+}
 

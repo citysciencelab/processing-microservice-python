@@ -36,24 +36,16 @@ def execute(data):
 
     print("Job execution started (Job ID", jobID, ")")
 
-    print("Input parameters:", data["jobID"])
+    data.pop("jobID", None)
+    inputParameters = data
 
-    # Input parameters
-    inputParameters = {}
+    print("Input parameters:", inputParameters)
 
-    # Iterate over the input parameters and rename the keys
-    for key, value in data.items():
-        # Skip the jobID
-        if key == "jobID":
-            continue
-
-        try:
-            title = PROCESS_METADATA["inputs"][key]["title"]
-            inputParameters[title] = value
-        except KeyError:
-            continue
 
     results = simulateResults(inputParameters)
+
+    print(PROCESS_METADATA)
+
 
     response = {
         "jobID": jobID,
@@ -70,7 +62,6 @@ def execute(data):
 @sio.on("registration_success")
 def registration_success(data):
     print("registration_success", data)
-
 
 # Connect to the SocketIO server
 if __name__ == "__main__":

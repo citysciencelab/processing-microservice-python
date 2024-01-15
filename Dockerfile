@@ -29,12 +29,12 @@ ENV LC_ALL=C.UTF-8 \
 
 ENV NETLOGO_URL=https://ccl.northwestern.edu/netlogo/$NETLOGO_VERSION/$NETLOGO_TARBALL
 
-RUN if [ "$NETLOGO_EXTENSION" = "True" ]; then \
-        wget -q $NETLOGO_URL && tar xzf $NETLOGO_TARBALL && ln -sf "NetLogo $NETLOGO_VERSION" netlogo \
-        && rm -f $NETLOGO_TARBALL && pip3 install -r netlogo/requirements.txt;
+RUN wget -q $NETLOGO_URL && tar xzf $NETLOGO_TARBALL && ln -sf "NetLogo $NETLOGO_VERSION" netlogo && rm -f $NETLOGO_TARBALL 
+
 
 # Copy application files into the Docker image
 COPY . /app
 WORKDIR /app
 
 RUN pip3 install -r requirements.txt
+RUN pip3 install -r NetLogo/requirements.txt
