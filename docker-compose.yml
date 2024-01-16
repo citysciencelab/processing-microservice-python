@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  processing-microservice-python:
+    build: . 
+    networks:
+      - proxy
+      - websocket-simulation
+  
+
+networks:
+  proxy:
+    external: true
+  websocket-simulation:
+    external: true

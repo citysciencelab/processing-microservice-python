@@ -1,12 +1,13 @@
-import socketio
-import json
+import socketio, json
 
 from config import URL, PROCESS_METADATA
 
-from NetLogo.ProcessManager import simulateResults
+netlogo = None
 
 # Create a SocketIO client
 sio = socketio.Client()
+
+
 
 # Function to handle SocketIO events
 @sio.event
@@ -14,6 +15,7 @@ def connect():
     print("SocketIO connection established")
 
     sio.emit('register', PROCESS_METADATA)
+
 
 @sio.event
 def disconnect():
@@ -24,7 +26,7 @@ def disconnect():
 @sio.event
 def execute(data):
 
-    print(data)
+    from NetLogo.ProcessManager import simulateResults
 
     # Check if there is data
     if not data:
@@ -41,11 +43,7 @@ def execute(data):
 
     print("Input parameters:", inputParameters)
 
-
-    results = simulateResults(inputParameters)
-
-    print(PROCESS_METADATA)
-
+    results = simulateResults(inputParameters, netlogo)
 
     response = {
         "jobID": jobID,
@@ -65,5 +63,10 @@ def registration_success(data):
 
 # Connect to the SocketIO server
 if __name__ == "__main__":
-    sio.connect(URL)
-    sio.wait()
+
+    try:
+        sio.connect(URL)
+        sio.wait()
+    except Exception as e:
+        print("An exception occurred:", str(e))
+        # Log the exception here

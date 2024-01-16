@@ -1,16 +1,19 @@
-import pynetlogo, pandas as pd, geopandas as gpd
 from NetLogo.ProcessMetadata import NETLOGO_VARIABLES, NETLOGO_REPORTERS
 
-# For Linux environments
-# netlogo = pynetlogo.NetLogoLink(gui=False, netlogo_home='../../NetLogo 6.3.0')
-
-# For Mac environments
-netlogo = pynetlogo.NetLogoLink(gui=False)
-
-netlogo.load_model("./NetLogo/model/Model_Rothenburgsort.nlogo")
+    
 
 
-def simulateResults(inputParameters):
+def simulateResults(inputParameters, netlogo):
+
+    import pynetlogo, pandas as pd
+
+    # For Linux environments
+    # netlogo = pynetlogo.NetLogoLink(gui=False, netlogo_home='../../NetLogo 6.3.0')
+
+    # For Mac environments
+    netlogo = pynetlogo.NetLogoLink(gui=False)
+
+    netlogo.load_model("./NetLogo/model/Model_Rothenburgsort.nlogo")
 
     try:
         parameters = {NETLOGO_VARIABLES[key]: value for key, value in inputParameters.items()}
@@ -27,6 +30,8 @@ def simulateResults(inputParameters):
         results = netlogo.repeat_report(NETLOGO_REPORTERS, parameters['Simulationszeit'] * 12, go="go")
 
         results = pd.DataFrame(results)
+
+        netlogo.kill_workspace()
 
         return results.to_json(orient='records')
     
