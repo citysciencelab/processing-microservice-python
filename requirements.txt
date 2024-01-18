@@ -1,3 +1,2 @@
-flask 
-python-socketio[client]
+flask
 python-socketio[asyncio_client]
