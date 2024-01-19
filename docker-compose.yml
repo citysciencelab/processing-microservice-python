@@ -1,11 +1,18 @@
 version: '3'
 
+# Comment out the Extension that you do not want to use
 services:
-  processing-microservice-python:
-    build: . 
+  processing-microservice-NetLogo:
+    build: ./Dockerfile-NetLogo
     networks:
       - proxy
       - websocket-simulation
+
+#  processing-microservice-Mesa:
+#    build: ./Dockerfile-Mesa
+#    networks:
+#      - proxy
+#      - websocket-simulation
   
 
 networks:
