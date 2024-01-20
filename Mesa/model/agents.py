@@ -118,7 +118,7 @@ class Robot(mg.GeoAgent):
     def get_routing(self):
         
         # URL for the routing service
-        url = "https://ors.cut.hcu-hamburg.de/ors/v2/directions/cycling-regular?start=" + str(self.geometry.x) + "," + str(self.geometry.y) + "&end=" + str(self.destination.x) + "," + str(self.destination.y)
+        url = "https://ors.comaps.eu/ors/v2/directions/cycling-regular?start=" + str(self.geometry.x) + "," + str(self.geometry.y) + "&end=" + str(self.destination.x) + "," + str(self.destination.y)
 
         # Request the route
         r = requests.get(url, verify=False)

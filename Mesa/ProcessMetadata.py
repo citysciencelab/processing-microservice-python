@@ -2,8 +2,8 @@ MESA_PROCESS_METADATA = {
     "version": "0.1.0",
     "id": "robot_model",
     "title": {
-        "en": "Agent-based model of RE3",
-        "de": "Agentenbasiertes Modell von RE3",
+        "en": "CCmCC Tree planing robot model",
+        "de": "CCmCC Tree planting Robot Modell",
     },
     "description": {
         "en": "This is an tree planting robot model from the CCmCC project.",

@@ -3,6 +3,7 @@ import socketio
 from config import URL, PROCESS_METADATA
 
 import NetLogo.ProcessManager as NetLogo
+import Mesa.ProcessManager as Mesa
 
 async def main():
     # Create a Socket.IO client instance
@@ -46,7 +47,7 @@ async def main():
 
         # print("Input parameters:", inputParameters)
 
-        results = await NetLogo.simulate_results(inputParameters)
+        results = await Mesa.simulate_results(inputParameters)
 
         response = {
             "jobID": jobID,

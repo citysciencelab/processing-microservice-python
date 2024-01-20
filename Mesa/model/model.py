@@ -9,7 +9,7 @@ from shapely.geometry import Point
 # Set to current directory
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-from agents import *
+from Mesa.model.agents import *
 
 # Config for Database
 #url = "http://localhost:3000" #url of the api
@@ -20,10 +20,6 @@ time_between_steps = 5 #seconds
 
 # Load Data
 stadtteile = gpd.read_file('data/bevoelkerung_stadtteile.json') #district tile
-
-#bodenversiegelung = gpd.read_file('data/bodenversiegelung.json') #floor sealing
-#ceiled_places = bodenversiegelung[bodenversiegelung["versiegelungsklasse"] > 6]
-
 ceiled_places = gpd.read_file('data/ceiled_places_without_trees.geojson') #floor sealing
 
 baumschulen = [

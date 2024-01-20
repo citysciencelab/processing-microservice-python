@@ -1,20 +1,20 @@
 from NetLogo.ProcessMetadata import NETLOGO_VARIABLES, NETLOGO_REPORTERS
-from importlib import reload
 
 import pynetlogo, pandas as pd, geopandas as gpd  
 
+# For Mac environments
 netlogo = pynetlogo.NetLogoLink(gui=False)
+
+# For Linux environments
+# netlogo = pynetlogo.NetLogoLink(gui=False, netlogo_home='../../NetLogo 6.3.0')
+
 netlogo.load_model("./NetLogo/model/Model_Rothenburgsort.nlogo")
+
+
 Rothenburgsort = gpd.read_file("./NetLogo/model/data/Rothenburgsort.json")
 
 
 async def simulate_results(inputParameters):
-
-    # For Linux environments
-    # netlogo = pynetlogo.NetLogoLink(gui=False, netlogo_home='../../NetLogo 6.3.0')
-
-    # For Mac environments
-    # netlogo = pynetlogo.NetLogoLink(gui=False, jvm_path=jvm_path)
 
     netlogo.load_model("./NetLogo/model/Model_Rothenburgsort.nlogo")
 
