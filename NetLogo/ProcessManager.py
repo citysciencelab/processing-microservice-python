@@ -1,10 +1,12 @@
 from NetLogo.ProcessMetadata import NETLOGO_VARIABLES, NETLOGO_REPORTERS
 from importlib import reload
 
-import pynetlogo, pandas as pd
+import pynetlogo, pandas as pd, geopandas as gpd  
 
 netlogo = pynetlogo.NetLogoLink(gui=False)
 netlogo.load_model("./NetLogo/model/Model_Rothenburgsort.nlogo")
+Rothenburgsort = gpd.read_file("./NetLogo/model/data/Rothenburgsort.json")
+
 
 async def simulate_results(inputParameters):
 
@@ -30,16 +32,22 @@ async def simulate_results(inputParameters):
 
         netlogo.command('setup')    
 
-        results = netlogo.repeat_report(NETLOGO_REPORTERS, parameters['Simulationszeit'] * 12, go="go")
+        results = netlogo.repeat_report(list(NETLOGO_REPORTERS.values()), parameters['Simulationszeit'] * 12, go="go")
 
         results = pd.DataFrame(results)
 
-        finalResults = results.to_json(orient='records')
+        column_rename = {value: key for key, value in NETLOGO_REPORTERS.items()}
+        results = results.rename(columns=column_rename)
+        results = results.reset_index().rename(columns={"index": "Zeitschritt"})
+
+        results["geometry"] = Rothenburgsort.geometry.iloc[0]
+        rgpd = gpd.GeoDataFrame(results, geometry="geometry")
+
+        finalResults = rgpd.to_json()
     
     except Exception as e:
         print(f"An error occurred: {str(e)}")
     
     finally:
         netlogo.kill_workspace()
-
         return finalResults

@@ -6,7 +6,10 @@ import NetLogo.ProcessManager as NetLogo
 
 async def main():
     # Create a Socket.IO client instance
-    sio = socketio.AsyncClient()
+    logger = False
+    engineio_logger = False
+
+    sio = socketio.AsyncClient(logger=logger, engineio_logger=engineio_logger)
 
     # Define event handlers
     @sio.event
