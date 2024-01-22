@@ -16,8 +16,6 @@ Rothenburgsort = gpd.read_file("./NetLogo/model/data/Rothenburgsort.json")
 
 async def simulate_results(inputParameters):
 
-    netlogo.load_model("./NetLogo/model/Model_Rothenburgsort.nlogo")
-
     finalResults = None
 
     try:

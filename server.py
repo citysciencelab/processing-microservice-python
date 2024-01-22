@@ -47,7 +47,7 @@ async def main():
 
         # print("Input parameters:", inputParameters)
 
-        results = await Mesa.simulate_results(inputParameters)
+        results = await NetLogo.simulate_results(inputParameters)
 
         response = {
             "jobID": jobID,
