@@ -2,7 +2,7 @@
 FROM ubuntu:latest
 
 # Install Python.
-RUN apt-get update && apt-get install -y python3 python3-pip wget
+RUN apt-get update && apt-get install -y python3 python3-pip wget python3.12-venv
 
 # Install Java.
 RUN apt-get install -y default-jdk
@@ -28,10 +28,14 @@ RUN wget -q $NETLOGO_URL && tar xzf $NETLOGO_TARBALL && ln -sf "NetLogo $NETLOGO
 
 
 # Copy application files into the Docker image
-COPY . /app
+COPY config.py requirements.txt server.py ./app/
+COPY ./NetLogo /app/NetLogo
 WORKDIR /app
 
-RUN pip3 install -r requirements.txt
-RUN pip3 install -r NetLogo/requirements.txt
+RUN python3 -m venv /app
+RUN . /app/bin/activate
 
-CMD ["python3", "server.py"]
+RUN /app/bin/pip3 install -r requirements.txt
+RUN /app/bin/pip3 install -r NetLogo/requirements.txt
+
+CMD ["/app/bin/python3", "server.py"]

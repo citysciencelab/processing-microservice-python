@@ -104,7 +104,29 @@ NETLOGO_PROCESS_METADATA = {
         "simulation_results": {
             "title": "Simulation results",
             "description": "The simulated model results",
-            "schema": {"type": "object", "contentMediaType": "application/json"},
+            "schema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "contentMediaType": "application/gml+xml; version=3.2"
+                    },
+                    {
+                        "type": "string",
+                        "contentMediaType": "application/vnd.google-earth.kml+xml",
+                        "contentSchema": "https://schemas.opengis.net/kml/2.3/ogckml23.xsd"
+                    },
+                    {
+                        "allOf": [
+                            {
+                                "format": "geojson-feature-collection"
+                            },
+                            {
+                                "$ref": "https://geojson.org/schema/FeatureCollection.json"
+                            }
+                        ]
+                    }
+                ]
+            }
         }
     },
     "example": {

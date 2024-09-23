@@ -3,12 +3,12 @@ import socketio
 from config import URL, PROCESS_METADATA
 
 import NetLogo.ProcessManager as NetLogo
-import Mesa.ProcessManager as Mesa
+#import Mesa.ProcessManager as Mesa
 
 async def main():
     # Create a Socket.IO client instance
-    logger = False
-    engineio_logger = False
+    logger = True
+    engineio_logger = True
 
     sio = socketio.AsyncClient(logger=logger, engineio_logger=engineio_logger)
 
