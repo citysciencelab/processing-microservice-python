@@ -28,8 +28,8 @@ RUN wget -q $NETLOGO_URL && tar xzf $NETLOGO_TARBALL && ln -sf "NetLogo $NETLOGO
 
 
 # Copy application files into the Docker image
-COPY config.py requirements.txt server.py ./app/
-COPY ./NetLogo /app/NetLogo
+COPY requirements.txt ./app/
+COPY ./NetLogo/requirements.txt /app/NetLogo/
 WORKDIR /app
 
 RUN python3 -m venv /app
@@ -37,5 +37,8 @@ RUN . /app/bin/activate
 
 RUN /app/bin/pip3 install -r requirements.txt
 RUN /app/bin/pip3 install -r NetLogo/requirements.txt
+
+COPY config.py server.py ./
+COPY ./NetLogo ./NetLogo
 
 CMD ["/app/bin/python3", "server.py"]
