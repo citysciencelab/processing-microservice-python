@@ -101,33 +101,53 @@ NETLOGO_PROCESS_METADATA = {
         },
     },
     "outputs": {
-        "simulation_results": {
-            "title": "Simulation results",
-            "description": "The simulated model results",
-            "schema": {
-                "oneOf": [
-                    {
-                        "type": "string",
-                        "contentMediaType": "application/gml+xml; version=3.2"
-                    },
-                    {
-                        "type": "string",
-                        "contentMediaType": "application/vnd.google-earth.kml+xml",
-                        "contentSchema": "https://schemas.opengis.net/kml/2.3/ogckml23.xsd"
-                    },
-                    {
-                        "allOf": [
-                            {
-                                "format": "geojson-feature-collection"
+        "title": "Result data of the simulation",
+        "type": "object",
+        "required": ["results"],
+        "properties": {
+            "results": {
+                "type": "object",
+                "required": ["simulation_results", "simulation_geometry"],
+                "properties": {
+                    "simulation_results": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "Zeitschritt": {"type": "number"},
+                                "Modernisierungen nicht begonnen": {"type": "number"},
+                                "Modernisierungen in Finanzierung": {"type": "number"},
+                                "Modernisierungen in Planung": {"type": "number"},
+                                "Modernisierungen in Bau": {"type": "number"},
+                                "Modernisierungen erledigt": {"type": "number"},
+                                "Durchschnittliche Mietkosten": {"type": "number"},
+                                "Anzahl Anwohnende": {"type": "number"},
                             },
-                            {
-                                "$ref": "https://geojson.org/schema/FeatureCollection.json"
-                            }
-                        ]
-                    }
-                ]
-            }
-        }
+                            "required": [
+                                "Zeitschritt",
+                                "Modernisierungen nicht begonnen",
+                                "Modernisierungen in Finanzierung",
+                                "Modernisierungen in Planung",
+                                "Modernisierungen in Bau",
+                                "Modernisierungen erledigt",
+                                "Durchschnittliche Mietkosten",
+                                "Anzahl Anwohnende",
+                            ],
+                        },
+                    },
+                    "simulation_geometry": {
+                        "schema": {
+                            "allOf": [
+                                {"format": "geojson-feature-collection"},
+                                {
+                                    "$ref": "https://geojson.org/schema/FeatureCollection.json"
+                                },
+                            ]
+                        },
+                    },
+                },
+            },
+        },
     },
     "example": {
         "inputs": {
