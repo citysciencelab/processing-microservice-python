@@ -57,7 +57,6 @@ async def simulate_results(inputParameters):
             "simulation_geometry": json.loads(Rothenburgsort.to_json()),
         }
 
-        finalResults = json.dumps(finalResults)
 
     except Exception as e:
         logging.error(e)
