@@ -6,17 +6,16 @@ import pynetlogo, json, pandas as pd, geopandas as gpd, logging
 # netlogo = pynetlogo.NetLogoLink(gui=False)
 
 # For Linux environments
+netlogo = pynetlogo.NetLogoLink(gui=False, netlogo_home="../../NetLogo 6.3.0")
 
+netlogo.load_model("./NetLogo/model/Model_Rothenburgsort.nlogo")
+
+Rothenburgsort = gpd.read_file("./NetLogo/model/data/rothenburgsort.json")
 
 @staticmethod
 async def simulate_results(inputParameters):
 
-    netlogo = pynetlogo.NetLogoLink(gui=False, netlogo_home="../../NetLogo 6.3.0")
-
-    netlogo.load_model("./NetLogo/model/Model_Rothenburgsort.nlogo")
-
-
-    Rothenburgsort = gpd.read_file("./NetLogo/model/data/rothenburgsort.json")
+    
 
     finalResults = None
 
@@ -37,7 +36,7 @@ async def simulate_results(inputParameters):
 
         netlogo.command("setup")
 
-        logging.debug(netlogo)
+        logging.debug(netlogo.report('count eigentumsverhältnisse with [modernisierungs-status = "nicht begonnen"]'))
 
         results = netlogo.repeat_report(
             list(NETLOGO_REPORTERS.values()),
@@ -52,17 +51,16 @@ async def simulate_results(inputParameters):
         results = results.reset_index().rename(columns={"index": "Zeitschritt"})
 
         simulation_results = pd.DataFrame(results)
-        simulation_geometry = Rothenburgsort.geometry.iloc[0]
 
         finalResults = {
             "simulation_results": simulation_results.to_dict(orient="records"),
-            "simulation_geometry": json.loads(simulation_geometry.to_json()),
+            "simulation_geometry": json.loads(Rothenburgsort.to_json()),
         }
 
         finalResults = json.dumps(finalResults)
 
     except Exception as e:
-        print(f"An error occurred: {str(e)}")
+        logging.error(e)
 
     finally:
        # netlogo.kill_workspace()
