@@ -304,7 +304,7 @@ PYTHON_PROCESS_METADATA = {
                 "property2": "http://example.org/property",
                 "property3": 100.5,
                 "property4": "2023-08-24T14:30:00Z",
-                "property5": true,
+                "property5": True,
             },
             "geometryInput": [
                 '{"type": "Point", "coordinates": [125.6, 10.1]}',
