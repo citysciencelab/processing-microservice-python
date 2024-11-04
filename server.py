@@ -1,8 +1,9 @@
 import asyncio, socketio, logging
 from config import URL, PROCESS_METADATA
 
-import NetLogo.ProcessManager as NetLogo
+#import NetLogo.ProcessManager as NetLogo
 #import Mesa.ProcessManager as Mesa
+import Python.ProcessManager as PythonProcessManager
 
 logger = True
 engineio_logger = True
@@ -57,7 +58,7 @@ async def execute(data):
 
     try:
         loop = asyncio.get_event_loop()
-        task = loop.create_task(NetLogo.simulate_results(inputParameters))
+        task = loop.create_task(PythonProcessManager.simulate_results(inputParameters))
         logging.debug("Task created")
         logging.debug(task)
         results = await task
